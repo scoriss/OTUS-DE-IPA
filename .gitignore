@@ -1,0 +1,10 @@
+# DBT
+dbt/target/
+dbt/dbt_modules/
+dbt/logs/
+
+# Log files
+*.log
+
+# Python
+__pycache__
