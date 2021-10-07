@@ -1,0 +1,53 @@
+version: '3.2'
+services:
+  postgres-airflow:
+    image: postgres:13
+    container_name: airflow-db
+    environment:
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_USER : airflow
+      POSTGRES_DB : airflow
+    expose:
+      - 5432
+    restart: always
+
+  airdbt:
+    build: 
+      context: .
+      cache_from:
+        - python:3.8
+    image: otus-de-ipa:last
+    container_name: airdbt
+    restart: always
+    environment: 
+      DBT_PROFILES_DIR: /dbt
+      AIRFLOW_HOME: /airflow
+      AIRFLOW__CORE__DAGS_FOLDER: /airflow/dags
+      AIRFLOW__CORE__PARALLELISM: 4
+      AIRFLOW__CORE__DAG_CONCURRENCY: 4
+      AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: 4
+      # Postgres details for airflow service
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_HOST: postgres-airflow
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: airflow
+      # ClickHouse
+      CLICKHOUSE_HOST: ${CLICKHOUSE_HOST}
+      CLICKHOUSE_SCHEMA: ${CLICKHOUSE_SCHEMA}
+      CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+      CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD} 
+      # S3
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      S3_BUCKET: ${S3_BUCKET}
+    depends_on:
+      - postgres-airflow
+    ports:
+      - 8000:8080
+      - 8090:8090
+    volumes:
+      - ./dbt:/dbt
+      - ./airflow:/airflow
+

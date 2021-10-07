@@ -1,0 +1,18 @@
+.git/*
+.cache/*
+
+.vscode/
+
+dbt/target/*
+dbt/dbt_modules/*
+dbt/logs/*
+dbt/.user.yml
+
+initial_data/*
+
+.dockerignore
+dockerfile
+
+# Byte-compiled / optimized / DLL files
+**/__pycache__/
+

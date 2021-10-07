@@ -2,4 +2,4 @@
 
 * **[Анализ инвестиционного портфеля]()**<br>
     Система получения и анализа данных инвестиционного портфеля.<br>
-    `Yandex.Cloud`, `Airflow`, `DBT`, `ClickHouse`, `Yandex DataLens`
+    `Yandex.Cloud`, `Airflow`, `S3 Object Storage`, `DBT`, `ClickHouse`, `Yandex DataLens`
