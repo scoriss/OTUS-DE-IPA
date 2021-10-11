@@ -20,12 +20,18 @@ services:
     container_name: airdbt
     restart: always
     environment: 
-      DBT_PROFILES_DIR: /dbt
+      DBT_PROFILES_DIR: /ipa_project/dbt
+      DBT_PROJECT_DIR: /ipa_project/dbt
+      INITIAL_DATA_DIR: /ipa_project/initial_data
+      PYTHONPATH: /airflow/include
       AIRFLOW_HOME: /airflow
       AIRFLOW__CORE__DAGS_FOLDER: /airflow/dags
       AIRFLOW__CORE__PARALLELISM: 4
       AIRFLOW__CORE__DAG_CONCURRENCY: 4
       AIRFLOW__CORE__MAX_ACTIVE_RUNS_PER_DAG: 4
+      AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+      AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS: 'false'
+      AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC: 10
       # Postgres details for airflow service
       POSTGRES_USER: airflow
       POSTGRES_PASSWORD: airflow
@@ -48,6 +54,8 @@ services:
       - 8000:8080
       - 8090:8090
     volumes:
-      - ./dbt:/dbt
+      - ./dbt:/ipa_project/dbt
       - ./airflow:/airflow
+      - ./initial_data:/ipa_project/initial_data
+      - ./temp:/ipa_project/temp
 

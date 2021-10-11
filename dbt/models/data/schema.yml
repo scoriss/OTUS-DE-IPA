@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: sectype
+    description: Тип ценной бумаги (Справочник)
+
+    columns:
+      - name: sectype
+        description: Тип ценной бумаги
+        tests:
+          - unique
+          - not_null
+
+      - name: sectype_name
+        description: Расшифровка типа ценной бумаги
+
+  - name: boards
+    description: Режимы торгов (Справочник)
+
+    columns:
+      - name: id
+        tests:
+          - not_null
+        description: Номер режима торгов
+
+      - name: boardid
+        description: Идентификатор режима торгов
+        tests:
+          - unique
+          - not_null
+
+      - name: board_title
+        description: Наименование режима торгов
+
+      - name: board_group_id
+        description: Идентификатор группы режимов торгов 
+
+      - name: market_id
+        description: Идентификатор маркета
+
+      - name: is_traded
+        description: Признак проведения торгов
+        

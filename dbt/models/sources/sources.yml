@@ -1,0 +1,48 @@
+version: 2
+
+sources:
+
+    - name: initial_data
+      #database: ipa
+      schema: ipa
+      tags: ["sources"]      
+      loader: S3
+      description: "External IPA S3 tables"
+
+      tables:
+        - name: src_sectype
+          description: "Security types source in S3 bucket"
+          identifier: src_sectype
+          
+        - name: src_boards
+          description: "Boards type source in S3 bucket"
+          identifier: src_boards
+          
+        - name: src_ipa_dataset
+          description: "Initial IPA Data source in S3 bucket"
+          identifier: src_ipa_dataset
+
+    - name: moex_data
+      #database: ipa
+      schema: ipa
+      tags: ["sources"]      
+      loader: S3
+      description: "External S3 tables for MOEX Data"
+
+      tables:
+        - name: src_shares
+          description: "Shares information source in S3 bucket"
+          identifier: src_shares
+          
+        - name: src_shares_marketdata
+          description: "Shares marketdata source in S3 bucket"
+          identifier: src_shares_marketdata
+          
+        - name: src_bonds
+          description: "Bonds information source in S3 bucket"
+          identifier: src_bonds
+          
+        - name: src_bonds_marketdata
+          description: "Bonds marketdata source in S3 bucket"
+          identifier: src_bonds_marketdata
+          

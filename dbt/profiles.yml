@@ -1,0 +1,12 @@
+ipa_clickhouse:
+  target: dev
+  outputs:
+    dev:
+      type: clickhouse
+      schema: "{{ env_var('CLICKHOUSE_SCHEMA') }}"
+      host: "{{ env_var('CLICKHOUSE_HOST') }}"
+      # optional
+      port: 9440
+      user: "{{ env_var('CLICKHOUSE_USER') }}"
+      password: "{{ env_var('CLICKHOUSE_PASSWORD') }}"
+      secure: True
