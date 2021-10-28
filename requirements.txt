@@ -3,5 +3,5 @@ pandas==1.1.3
 requests==2.26.0
 apimoex==1.2.0
 boto3==1.18.48
-dbt==0.20.1
-dbt-clickhouse==0.20.1
+dbt==0.20.2
+dbt-clickhouse==0.20.2
