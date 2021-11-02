@@ -15,4 +15,4 @@ SELECT
 		(sectype in ('J', 'E')), 'ETF', 
 		sectype='F', 'Ипотечный сертификат', 
 		'Другое') as sectype_group 
-FROM {{ source('initial_data', 'src_sectype') }}
+FROM {{ ref('stg_sectype') }}

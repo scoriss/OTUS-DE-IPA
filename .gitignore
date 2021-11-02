@@ -6,11 +6,16 @@ airflow/logs/
 airflow/webserver_config.py
 airflow/airflow-webserver.pid
 
+# Temporary
+temp/**/*.tsv
+/tests/
+
 # DBT
 dbt/target/
 dbt/dbt_modules/
 dbt/logs/
 dbt/.user.yml
+!dbt/tests/*
 
 # Log files
 *.log
@@ -27,6 +32,3 @@ __pycache__
 # Mac OS-specific storage files
 .DS_Store
 
-# Temporary
-temp/**/*.tsv
-tests/

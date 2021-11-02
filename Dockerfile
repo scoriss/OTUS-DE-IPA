@@ -2,7 +2,7 @@ FROM python:3.8 AS compile-image
 
 ENV VIRTUAL_ENV=/opt/venv_ipa
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+ENV PATH="$VIRTUAL_ENV/bin:$PATH" 
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools && \

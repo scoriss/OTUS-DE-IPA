@@ -16,7 +16,7 @@ WITH staging as (
 		sectype,
 		prevprice,
 		prevdate,
-		toDateOrNull(prevdate) as prevdate_dt 
+		toDateOrZero(prevdate) as prevdate_dt 
 
 	FROM {{ source('moex_data', 'src_shares') }}
 )

@@ -7,7 +7,7 @@ from airflow.operators.python_operator import PythonOperator
 from airflow.operators.dummy import DummyOperator
 from airflow.utils.dates import datetime
 from airflow.utils.dates import timedelta
-from ipa_common import s3_yandex, moex
+from ipa_common import S3Yandex, MoexIss
 
 DBT_PROJECT_DIR = os.environ.get('DBT_PROJECT_DIR', '/ipa_project/dbt')
 INITIAL_DATA_DIR = os.environ.get('INITIAL_DATA_DIR', '/ipa_project/initial_data')
@@ -16,14 +16,14 @@ S3_BUCKET = os.environ.get('S3_BUCKET')
 TEMP_ROOT_DIR = os.path.join(Path(DBT_PROJECT_DIR).resolve().parent, 'temp')
 
 def upload_initial_data():
-    s3_client = s3_yandex.S3Yandex()
+    s3_client = S3Yandex()
     s3_client.delete_object_by_prefix(S3_BUCKET, 'data')
     s3_client.upload_folder(INITIAL_DATA_DIR, S3_BUCKET, 'data')
 
 
 def upload_shares_data():
-    s3_client = s3_yandex.S3Yandex()
-    moex_client = moex.MoexIss()
+    s3_client = S3Yandex()
+    moex_client = MoexIss()
     moex_client.get_shares().to_csv(os.path.join(TEMP_ROOT_DIR, 'shares/shares.tsv'), sep='\t', 
         line_terminator='\n',header=True, index=False)
     s3_client.upload_file(os.path.join(TEMP_ROOT_DIR, 'shares/shares.tsv'), S3_BUCKET, 'moex-data/current/shares/shares.tsv')
@@ -33,8 +33,8 @@ def upload_shares_data():
 
 
 def upload_bonds_data():
-    s3_client = s3_yandex.S3Yandex()
-    moex_client = moex.MoexIss()
+    s3_client = S3Yandex()
+    moex_client = MoexIss()
     moex_client.get_bonds().to_csv(os.path.join(TEMP_ROOT_DIR, 'bonds/bonds.tsv'), sep='\t', 
         line_terminator='\n',header=True, index=False)
     s3_client.upload_file(os.path.join(TEMP_ROOT_DIR, 'bonds/bonds.tsv'), S3_BUCKET, 'moex-data/current/bonds/bonds.tsv')

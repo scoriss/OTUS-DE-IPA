@@ -5,4 +5,4 @@
     )
 }}
 
-select * from {{ source('initial_data', 'src_boards') }}
+select * from {{ ref('stg_boards') }}
