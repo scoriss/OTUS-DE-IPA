@@ -1,7 +1,7 @@
 {{
     config (
       engine='MergeTree()',
-      order_by='operation_date, operation, secid',
+      order_by=['operation_date','operation','secid'],
       partition_by='toYYYYMM(operation_date)'
     )
 }}
