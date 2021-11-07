@@ -53,7 +53,8 @@
             currency   		FixedString(3),       
             commission      Decimal(18,2),       
             nkd         	Decimal(18,2),       
-            tax         	Decimal(18,2)           )
+            tax         	Decimal(18,2)           
+        )
         ENGINE = S3('https://storage.yandexcloud.net/{{ env_var('S3_BUCKET') }}/data/ipa_dataset.tsv', 'TabSeparatedWithNames')
     {% endset %}
     {% set table = run_query(sql) %}
@@ -164,10 +165,10 @@
             latname     			String,
             issuesizeplaced     	Float64,
             sectype     			LowCardinality(String),
-            couponpercent     		Float64,
+            couponpercent     		Decimal(9,2),
             offerdate     			String,
             settledate     			String,
-            lotvalue     			Float64
+	        lotvalue     			Decimal(18,2)
         )
         ENGINE = S3('https://storage.yandexcloud.net/{{ env_var('S3_BUCKET') }}/moex-data/current/bonds/bonds.tsv', 'TabSeparatedWithNames')
     {% endset %}
@@ -197,9 +198,9 @@
             value     				Decimal(18,6),
             yield                   Decimal(9,2),
             value_usd     			Decimal(18,6),
-            yieldatwaprice     		Float64,
-            yieldtoprevyield     	Float64,
-            lasttoprevprice     	Float64,
+            yieldatwaprice     		Decimal(9,2),
+            yieldtoprevyield     	Decimal(9,2),
+            lasttoprevprice     	Decimal(18,6),
             numtrades     			UInt32,
             voltoday     			UInt64,
             valtoday     			UInt64,
@@ -207,10 +208,10 @@
             boardid     			LowCardinality(String),
             updatetime     			String,
             duration     			UInt32,
-            change     				Float64,
+            change     				Decimal(9,2),
             systime     			String,
             valtoday_rur     		UInt32,
-            yieldlastcoupon     	Float64
+            yieldlastcoupon     	Decimal(9,2)
         )
         ENGINE = S3('https://storage.yandexcloud.net/{{ env_var('S3_BUCKET') }}/moex-data/current/bonds/bonds_marketdata.tsv', 'TabSeparatedWithNames')
     {% endset %}

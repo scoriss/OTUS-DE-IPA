@@ -2,8 +2,8 @@ WITH sec_main AS (
 	SELECT 
 		secid, 
 		sum(amount) as amount_, 
-		round(sum(amount*price),2) as total_buy, 
-		round(sum(amount*price)/sum(amount),2) as avg_price, 
+		round(sum(amount*price),6) as total_buy, 
+		round(sum(amount*price)/sum(amount),6) as avg_price, 
 		round(sum(commission),2) as commission, 
 		round(sum(nkd),2) as nkd  
 	FROM {{ ref('operations') }} 
