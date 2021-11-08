@@ -2,12 +2,16 @@ FROM python:3.8 AS compile-image
 
 ENV VIRTUAL_ENV=/opt/venv_ipa
 RUN python3 -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH" 
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+ENV AIRFLOW_VERSION=2.1.4
+ENV PYTHON_VERSION=3.8
+ENV CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-no-providers-${PYTHON_VERSION}.txt"
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip setuptools && \
     pip install --no-cache-dir -r requirements.txt && \
-    pip install 'apache-airflow[postgres]==2.1.4'
+    pip install --no-cache-dir "apache-airflow[postgres]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
 
 RUN mkdir -p /usr/local/share/ca-certificates/Yandex && \
     wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" -O /usr/local/share/ca-certificates/Yandex/YandexInternalRootCA.crt && \
