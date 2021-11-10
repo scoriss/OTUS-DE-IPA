@@ -33,8 +33,8 @@ class MoexIss:
             'operation_url': '/engines/stock/markets/bonds/boardgroups/58/',
             'table_columns': ('SECID', 'SHORTNAME', 'YIELDATPREVWAPRICE', 'COUPONVALUE', 'NEXTCOUPON', 'ACCRUEDINT', 'PREVPRICE', 'LOTSIZE', 
                 'FACEVALUE', 'BOARDID', 'MATDATE', 'DECIMALS', 'COUPONPERIOD', 'ISSUESIZE', 'PREVLEGALCLOSEPRICE', 'PREVADMITTEDQUOTE', 
-                'PREVDATE', 'SECNAME', 'FACEUNIT', 'BUYBACKPRICE', 'BUYBACKDATE', 'LATNAME', 'ISSUESIZEPLACED', 'SECTYPE', 'COUPONPERCENT', 
-                'OFFERDATE', 'SETTLEDATE', 'LOTVALUE')
+                'PREVDATE', 'SECNAME', 'FACEUNIT', 'BUYBACKPRICE', 'BUYBACKDATE', 'LATNAME', 'CURRENCYID', 'ISSUESIZEPLACED', 'SECTYPE', 
+                'COUPONPERCENT', 'OFFERDATE', 'SETTLEDATE', 'LOTVALUE')
             },
 
         'bonds_marketdata': {'iss.only': 'marketdata', 'table': 'marketdata',
