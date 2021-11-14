@@ -1,6 +1,7 @@
 {{
     config (
       enabled=True,
+      tags=["moex"],
       engine='MergeTree()',
       order_by=['load_date','secid'],
       partition_by='toYYYYMM(load_date)'
@@ -32,7 +33,8 @@ SELECT
   s.nextcoupon AS nextcoupon, 
   s.prevprice AS prevprice, 
   s.lotsize AS lotsize, 
-  s.facevalue AS facevalue, 
+  s.facevalue AS facevalue,
+ 	s.currencyid as currencyid, 
   s.matdate AS matdate, 
   s.decimals AS decimals, 
   s.couponperiod AS couponperiod, 

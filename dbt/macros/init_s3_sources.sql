@@ -8,7 +8,7 @@
 
     {% set sql %}
         CREATE TABLE {{ target.schema }}.src_sectype (
-            sectype         FixedString(1),
+            sectype         LowCardinality(String),
             sectype_name    String
         )
         ENGINE = S3('https://storage.yandexcloud.net/{{ env_var('S3_BUCKET') }}/data/sectype.tsv', 'TabSeparatedWithNames')
@@ -45,7 +45,7 @@
         CREATE TABLE {{ target.schema }}.src_ipa_dataset (
             dt_datetime     DateTime,
             operation       LowCardinality(String),        
-            secid           String,        
+            secid           LowCardinality(String),        
             sec_name        String,        
             amount          UInt32,       
             price           Decimal(18,6),
@@ -163,6 +163,7 @@
             buybackprice     		Decimal(9,2),
             buybackdate     		String,
             latname     			String,
+            currencyid              LowCardinality(String),
             issuesizeplaced     	Float64,
             sectype     			LowCardinality(String),
             couponpercent     		Decimal(9,2),

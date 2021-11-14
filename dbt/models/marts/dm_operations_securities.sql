@@ -19,19 +19,21 @@ sec_payment AS (
 	FROM {{ ref('operations') }}
 	WHERE operation in ('dividend', 'coupon')
 	GROUP BY secid, payment_type
+),
+dataset AS (
+	SELECT 
+		m.secid, 
+		m.amount_ as amount, 
+		m.total_buy, 
+		m.avg_price, 
+		m.commission, 
+		m.nkd,
+		coalesce(p.payment_type, CAST('','Nullable(String)')) AS payment_type, 
+		coalesce(p.total_payment, CAST(0,'Nullable(Decimal(38,6))')) AS total_payment, 
+		coalesce(p.tax, CAST(0,'Nullable(Decimal(38, 6))')) AS tax 
+	FROM sec_main m
+		LEFT JOIN sec_payment p  ON m.secid = p.secid
 )
-SELECT 
-	m.secid, 
-	m.amount_ as amount, 
-	m.total_buy, 
-	m.avg_price, 
-	m.commission, 
-	m.nkd,
-	p.payment_type, 
-	p.total_payment, 
-	p.tax
-FROM sec_main m
-	LEFT JOIN sec_payment p  ON m.secid = p.secid
-
+SELECT * FROM dataset
 
 

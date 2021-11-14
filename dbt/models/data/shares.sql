@@ -1,6 +1,7 @@
 {{
     config (
       enabled=True,
+      tags=["moex"],
       engine='MergeTree()',
       order_by=['load_date','secid'],
       partition_by='toYYYYMM(load_date)'
