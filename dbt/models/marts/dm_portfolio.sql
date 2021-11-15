@@ -124,7 +124,7 @@ portfolio AS (
 		round((toFloat64(profit-expense)/toFloat64(expense))*100, 2) as full_growth_prc,
 		(current_cost-previous_cost) AS to_previous_cost,
 		round((toFloat64(current_cost-previous_cost)/toFloat64(previous_cost))*100, 2) as to_previous_prc,
-		o.total_buy+o.nkd+o.tax AS expense,
+		o.total_buy+o.nkd+o.tax+o.commission AS expense,
 		full_cost+o.total_payment AS profit,
 		o.commission, 
 		o.nkd, 
