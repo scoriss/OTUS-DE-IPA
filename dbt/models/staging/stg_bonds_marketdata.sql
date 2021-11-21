@@ -25,10 +25,10 @@ WITH staging as (
 		valtoday,
 		valtoday_usd,
 		valtoday_rur,
-		parseDateTimeBestEffortOrNull( concat(toString(toDate(systime)), ' ', updatetime) ) as updatetime_dt,
+		parseDateTimeBestEffortOrNull( concat(toString(toDate(systime)), ' ', updatetime), 'UTC' ) as updatetime_dt,
 		duration,
 		change,
-		parseDateTimeBestEffortOrZero(systime) as systime_dt,
+		parseDateTimeBestEffortOrZero(systime, 'UTC') as systime_dt,
 		yieldlastcoupon
 	FROM {{ source('moex_data', 'src_bonds_marketdata') }}
 )

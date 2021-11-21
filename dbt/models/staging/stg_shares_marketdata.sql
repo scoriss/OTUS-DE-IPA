@@ -21,13 +21,13 @@ WITH staging as (
 		valtoday,
 		valtoday_usd,
 		valtoday_rur,
-		parseDateTimeBestEffortOrZero( concat(toString(toDate(systime)), ' ', updatetime) ) as updatetime_dt,
+		parseDateTimeBestEffortOrZero( concat(toString(toDate(systime)), ' ', updatetime), 'UTC' ) as updatetime_dt,
 		lcloseprice,
 		lcurrentprice,
-		parseDateTimeBestEffortOrZero(systime) as systime_dt,
+		parseDateTimeBestEffortOrZero(systime, 'UTC') as systime_dt,
 		issuecapitalization,
-		if(LENGTH(issuecapitalization_updatetime)=0, toDateTime(0), 
-			parseDateTimeBestEffortOrZero( concat(toString(toDate(systime)), ' ', issuecapitalization_updatetime) )) as issuecapitalization_updatetime_dt 
+		if(LENGTH(issuecapitalization_updatetime)=0, toDateTime(0, 'UTC'), 
+			parseDateTimeBestEffortOrZero( concat(toString(toDate(systime)), ' ', issuecapitalization_updatetime), 'UTC' )) as issuecapitalization_updatetime_dt 
 	FROM {{ source('moex_data', 'src_shares_marketdata') }}
 )
 

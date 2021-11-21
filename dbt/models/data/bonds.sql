@@ -41,7 +41,7 @@ SELECT
   s.issuesize AS issuesize, 
   s.prevlegalcloseprice AS prevlegalcloseprice, 
   s.prevadmittedquote AS prevadmittedquote, 
-  s.prevdate AS prevdate, 
+  s.prevdate AS prevdate,
   s.faceunit AS faceunit, 
   s.buybackprice AS buybackprice, 
   s.buybackdate AS buybackdate, 
@@ -78,10 +78,10 @@ SELECT
   m.valtoday AS valtoday, 
   m.valtoday_usd AS valtoday_usd, 
   m.valtoday_rur AS valtoday_rur, 
-  m.updatetime AS updatetime, 
+  toDateTime(m.updatetime, 'UTC') AS updatetime, 
   m.duration AS duration, 
   m.change AS change, 
-  m.systime AS systime,
+  toDateTime(m.systime, 'UTC') AS systime, 
   m.yieldlastcoupon AS yieldlastcoupon
 FROM bonds s
   INNER JOIN sectype t ON s.sectype=t.sectype

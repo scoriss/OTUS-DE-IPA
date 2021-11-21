@@ -7,7 +7,7 @@
 }}
 
 select  
-  dt_datetime as operation_date, 
+  toDateTime(dt_datetime, 'UTC') as operation_date, 
   operation,
 	multiIf(
 		operation='pay_in', 'Пополнение', 

@@ -43,7 +43,7 @@
 
     {% set sql %}
         CREATE TABLE {{ target.schema }}.src_ipa_dataset (
-            dt_datetime     DateTime,
+            dt_datetime     DateTime('UTC'),
             operation       LowCardinality(String),        
             secid           LowCardinality(String),        
             sec_name        String,        

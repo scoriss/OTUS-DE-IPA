@@ -59,12 +59,12 @@ SELECT
   m.valtoday AS valtoday, 
   m.valtoday_usd AS valtoday_usd, 
   m.valtoday_rur AS valtoday_rur, 
-  m.updatetime AS updatetime, 
+  toDateTime(m.updatetime, 'UTC') AS updatetime, 
   m.lcloseprice AS lcloseprice, 
   m.lcurrentprice AS lcurrentprice, 
-  m.systime AS systime, 
+  toDateTime(m.systime, 'UTC') AS systime, 
   m.issuecapitalization AS issuecapitalization, 
-  m.issuecapitalization_updatetime AS issuecapitalization_updatetime
+  toDateTime(m.issuecapitalization_updatetime, 'UTC') AS issuecapitalization_updatetime
 FROM shares s
   INNER JOIN sectype t ON s.sectype=t.sectype
   INNER JOIN boards b ON s.boardid=b.boardid
