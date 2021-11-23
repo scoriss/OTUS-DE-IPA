@@ -9,9 +9,10 @@ dbt/logs/*
 dbt/.user.yml
 
 initial_data/*
+documents/*
 
 .dockerignore
-dockerfile
+Dockerfile
 
 # Byte-compiled / optimized / DLL files
 **/__pycache__/
